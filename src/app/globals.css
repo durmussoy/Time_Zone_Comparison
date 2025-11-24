@@ -1,26 +1,64 @@
 @import "tailwindcss";
 
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --component-bg: #ffffff;
+  --component-border: #e5e7eb;
+  --component-text: #6b7280;
+  --component-hover: #f9fafb;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
+/* Default to dark mode if system prefers, but allow override via class */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --component-bg: rgba(0, 0, 0, 0.2);
+    --component-border: rgba(255, 255, 255, 0.1);
+    --component-text: #9ca3af;
+    --component-hover: rgba(255, 255, 255, 0.05);
   }
 }
 
+/* Manual dark mode override */
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --component-bg: rgba(0, 0, 0, 0.2);
+  --component-border: rgba(255, 255, 255, 0.1);
+  --component-text: #9ca3af;
+  --component-hover: rgba(255, 255, 255, 0.05);
+}
+
+/* Manual light mode override */
+.light {
+  --background: #ffffff;
+  --foreground: #171717;
+  --component-bg: #ffffff;
+  --component-border: #e5e7eb;
+  --component-text: #6b7280;
+  --component-hover: #f9fafb;
+}
+
 body {
-  background: var(--background);
   color: var(--foreground);
+  background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/10 backdrop-blur-lg border border-white/20;
+  }
+
+  .glass-dark {
+    @apply bg-black/30 backdrop-blur-xl border border-white/10;
+  }
 }
