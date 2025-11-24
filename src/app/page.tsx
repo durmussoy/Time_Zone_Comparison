@@ -207,7 +207,7 @@ export default function Home() {
                 "relative z-10 mt-20 py-8 border-t text-center text-sm transition-colors",
                 isDarkMode ? "border-white/5 text-gray-600" : "border-gray-200 text-gray-500"
             )}>
-                <p>© 2025 World's Time Zone Comparison. Built with Next.js & Tailwind.</p>
+                <p>© 2025 World's Time Zone Comparison. Built by Durmus Soy with Vibe Coding.</p>
             </footer>
         </main>
     );
