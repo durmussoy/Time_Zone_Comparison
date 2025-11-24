@@ -30,6 +30,25 @@ export default function Home() {
         document.documentElement.classList.add('dark');
     }, []);
 
+    // Auto-detect user's timezone on first load
+    useEffect(() => {
+        try {
+            const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            const matchedZone = ALL_TIMEZONES.find(tz => tz.value === userTimezone);
+
+            if (matchedZone) {
+                setBaseZone({
+                    id: matchedZone.value,
+                    name: matchedZone.label,
+                    type: 'iana'
+                });
+            }
+        } catch (error) {
+            // If timezone detection fails, keep default (Istanbul)
+            console.error('Failed to detect timezone:', error);
+        }
+    }, []);
+
     const toggleTheme = () => {
         const newMode = !isDarkMode;
         setIsDarkMode(newMode);
