@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { getTimeSlots, formatTimeForZone, getDateForZone, getTimeZoneOffsetDisplay, Zone } from "@/lib/time-utils";
 import { format } from "date-fns";
+import { formatInTimeZone } from "date-fns-tz";
 import { cn } from "@/lib/utils";
 
 interface ComparisonTableProps {
@@ -98,7 +99,7 @@ export function ComparisonTable({ baseZone, targetZones }: ComparisonTableProps)
                                         color: isCurrentHour ? '' : 'var(--component-text)'
                                     }}
                                 >
-                                    {format(slot, "HH:mm")}
+                                    {formatInTimeZone(slot, "UTC", "HH:mm")}
                                     {isCurrentHour && (
                                         <span className="ml-2 inline-block w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
                                     )}
