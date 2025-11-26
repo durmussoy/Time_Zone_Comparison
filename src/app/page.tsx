@@ -21,13 +21,14 @@ export default function Home() {
     ]);
 
     const [isChangingBase, setIsChangingBase] = useState(false);
-    const [isDarkMode, setIsDarkMode] = useState(true);
+    const [isDarkMode, setIsDarkMode] = useState(false);
 
     // Initialize theme based on system preference or default to dark
     useEffect(() => {
         // Check if user has a preference stored or system preference
-        // For simplicity in this demo, we'll default to dark and allow toggle
-        document.documentElement.classList.add('dark');
+        // For simplicity in this demo, we'll default to light and allow toggle
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
     }, []);
 
     // Auto-detect user's timezone on first load
